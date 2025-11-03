@@ -10,19 +10,26 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: 🧩 Checkout repository
-        uses: actions/checkout@v4
+      - name: Checkout code
+        uses: actions/checkout@v3
 
-      - name: 🔑 Setup SSH key
+      - name: Set up SSH key
         run: |
           mkdir -p ~/.ssh
-          echo "${{ secrets.EC2_KEY }}" > ~/.ssh/id_rsa
-          chmod 600 ~/.ssh/id_rsa
-          ssh-keyscan -H saillos.com >> ~/.ssh/known_hosts
+          echo "${{ secrets.EC2_KEY }}" > ~/.ssh/github_deploy_key
+          chmod 600 ~/.ssh/github_deploy_key
 
-      - name: 🚀 Deploy to EC2
+      - name: Add EC2 host to known_hosts
         run: |
-          ssh ec2-user@saillos.com 'bash -s' << 'ENDSSH'
-            cd /home/ec2-user/saillos
-            ./deploy.sh
+          ssh-keyscan -H www.saillos.com >> ~/.ssh/known_hosts
+
+      - name: Deploy to EC2
+        run: |
+          ssh -i ~/.ssh/github_deploy_key -o StrictHostKeyChecking=no ec2-user@www.saillos.com 'bash -s' << 'ENDSSH'
+          cd /home/ec2-user/saillos
+          git pull origin main
+          npm install --omit=dev
+          npm run build
+          pm2 restart saillos || pm2 start npm --name "saillos" -- run start
+          echo "✅ Deployment complete!"
           ENDSSH
