@@ -1,35 +1,35 @@
-import React from 'react';
-
-
-export const Header: React.FC = () => {
+export default function Home() {
   return (
-    <header className="flex flex-wrap gap-10 justify-between items-center px-56 py-6 w-full text-gray-900 border-b border-stone-400 min-h-24 max-md:px-5 max-md:max-w-full">
-      <div className="text-2xl font-bold leading-none">
-        <span style={{ fontWeight: 800 }}>BR</span>
-        <span style={{ fontWeight: 800, color: 'rgba(232,69,42,1)' }}>AI</span>
-        <span style={{ fontWeight: 800 }}>NNIFY</span>
-      </div>
-      <nav className="flex flex-wrap gap-2.5 justify-center items-center self-stretch p-2 my-auto text-base font-medium rounded-md border border-solid border-stone-300 min-w-60 max-md:max-w-full">
-        <div className="flex gap-2.5 items-start self-stretch px-4 py-2 my-auto whitespace-nowrap">
-          <div>Home</div>
-        </div>
-        <div className="flex gap-2.5 items-start self-stretch px-4 py-2 my-auto whitespace-nowrap">
-          <div>About</div>
-        </div>
-        <div className="flex gap-2.5 items-start self-stretch px-4 py-2 my-auto font-bold text-red-500 whitespace-nowrap bg-orange-100 rounded-md border border-solid border-zinc-100">
-          <div>Expertise</div>
-        </div>
-        <div className="flex gap-2.5 items-start self-stretch px-4 py-2 my-auto">
-          <div>Case Studies</div>
-        </div>
-        <div className="flex gap-2.5 items-start self-stretch px-4 py-2 my-auto whitespace-nowrap">
-          <div>Career</div>
-        </div>
-      </nav>
+   <section className="min-h-screen flex flex-col justify-center items-center text-center px-5">
+  <h1 className="text-5xl font-bold mb-4 text-gray-800">
+    We Design Experiences, Not Just Interfaces
+  </h1>
+  <p className="text-lg text-gray-600 max-w-2xl">
+    Saillos is a creative design agency that blends strategy, design, and technology
+    to build brands that matter.
+  </p>
+  <button className="mt-8 px-6 py-3 bg-orange-600 text-white rounded-full hover:bg-orange-700 transition-all">
+    Get Started
+  </button>
 
-      <button className="flex gap-2.5 justify-center items-center self-stretch px-4 pt-3.5 pb-2.5 my-auto text-sm font-semibold leading-none text-red-500 uppercase bg-orange-100 rounded-md border border-red-500 border-solid">
-        <span className="self-stretch my-auto">Free Quote</span>
-      </button>
-    </header>
+  {/* --- New message section --- */}
+  <div className="mt-16 text-center">
+    <h2 className="text-3xl font-semibold mb-3 text-gray-800">
+      Big Changes Are Coming!
+    </h2>
+    <p className="text-lg text-gray-600 max-w-xl mx-auto">
+      We're working on a brand-new experience for <span className="font-semibold text-orange-600">Saillos</span>.
+      <br />
+      Say hi or share your thoughts at{" "}
+      <a
+        href="mailto:thesaillos@gmail.com"
+        className="text-orange-600 hover:underline"
+      >
+        thesaillos@gmail.com
+      </a>
+    </p>
+  </div>
+</section>
+
   );
-};
+}
